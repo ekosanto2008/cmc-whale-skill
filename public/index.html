@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMC Whale Skill | AI Strategy Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    
+    <header class="glass-header">
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#00E5FF" stroke-width="2"/>
+                <path d="M12 8L16 12L12 16L8 12L12 8Z" fill="#00E5FF"/>
+            </svg>
+            <h1>CMC Whale Skill</h1>
+        </div>
+        <div class="badge">Track 2: Agent Skill</div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <h2>Autonomous Quantitative Strategist</h2>
+            <p>Leveraging CoinMarketCap real-time data & Gemini AI to generate backtestable algorithmic trading specifications.</p>
+            <button id="runBtn" class="primary-btn">
+                <span class="btn-text">INITIALIZE STRATEGY ENGINE</span>
+                <div class="spinner hidden" id="btnSpinner"></div>
+            </button>
+        </section>
+
+        <section id="outputSection" class="output-section hidden glass-panel">
+            <div class="output-header">
+                <h3><span class="status-dot"></span> LIVE STRATEGY OUTPUT</h3>
+                <span class="timestamp" id="timestamp"></span>
+            </div>
+            <div id="markdownContent" class="markdown-body">
+                <!-- AI Output goes here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ export class AnalyzerUseCase {
     private readonly geminiClient: GeminiClient
   ) {}
 
-  public async execute(): Promise<void> {
+  public async execute(): Promise<string> {
     console.log('[AnalyzerUseCase] Initiating market scan...');
 
     try {
@@ -20,9 +20,11 @@ export class AnalyzerUseCase {
       console.log('\n--- QUANTITATIVE STRATEGY SPECIFICATION ---\n');
       console.log(strategy);
       console.log('\n-------------------------------------------\n');
-
+      
+      return strategy;
     } catch (error) {
       console.error('[AnalyzerUseCase] Execution failed:', error);
+      throw error;
     }
   }
 

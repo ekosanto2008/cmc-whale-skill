@@ -1,16 +1,29 @@
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
 import { CmcClient } from './infrastructure/cmcClient';
 import { GeminiClient } from './infrastructure/geminiClient';
 import { AnalyzerUseCase } from './application/analyzerUseCase';
 
-async function bootstrap() {
-  const cmcClient = new CmcClient();
-  const geminiClient = new GeminiClient();
-  const analyzerUseCase = new AnalyzerUseCase(cmcClient, geminiClient);
+const app = express();
+const port = process.env.PORT || 3000;
 
-  await analyzerUseCase.execute();
-}
+app.use(cors());
+app.use(express.static(path.join(__dirname, '../public')));
 
-bootstrap().catch((error) => {
-  console.error('[Bootstrap Error]', error);
-  process.exit(1);
+const cmcClient = new CmcClient();
+const geminiClient = new GeminiClient();
+const analyzerUseCase = new AnalyzerUseCase(cmcClient, geminiClient);
+
+app.get('/api/analyze', async (req, res) => {
+  try {
+    const strategy = await analyzerUseCase.execute();
+    res.json({ success: true, data: strategy });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`[Server] CMC Whale Skill GUI running at http://localhost:${port}`);
 });
